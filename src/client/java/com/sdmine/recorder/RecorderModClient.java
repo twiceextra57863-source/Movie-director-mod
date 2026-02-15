@@ -1,5 +1,6 @@
 package com.sdmine.recorder;
 
+import com.sdmine.recorder.project.ProjectManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -14,6 +15,15 @@ public class RecorderModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+
+        // Init project system
+        try {
+            ProjectManager.init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // T key to open dashboard
         openDashboardKey = KeyBindingHelper.registerKeyBinding(
                 new KeyBinding(
                         "key.action_recorder.open_dashboard",
@@ -25,8 +35,6 @@ public class RecorderModClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openDashboardKey.wasPressed()) {
-
-                // ✅ Only singleplayer
                 if (client.isInSingleplayer()) {
                     client.setScreen(new SoftwareDashboardScreen());
                 }
@@ -34,4 +42,3 @@ public class RecorderModClient implements ClientModInitializer {
         });
     }
 }
-
