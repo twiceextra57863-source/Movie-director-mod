@@ -1,40 +1,81 @@
 plugins {
-    id 'fabric-loom' version '1.8.13'
-    id 'java'
+    id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'maven-publish'
 }
 
-group = 'com.twiceextra'
-version = '1.0.0'
-archivesBaseName = 'movie-director-mod'
+version = project.mod_version
+group = project.maven_group
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+base {
+    archivesName = project.archives_base_name
+}
 
 repositories {
-    maven { url = "https://maven.fabricmc.net/" }
     mavenCentral()
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
+    maven {
+        name = "Mojang"
+        url = "https://libraries.minecraft.net/"
+    }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:1.21.4"
-    mappings loom.layered {
-        officialMojangMappings()
-    }
+    // Minecraft
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    
+    // Mappings - Official mappings use kar rahe ho
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    
+    // Fabric Loader
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    
+    // Fabric API - COMPLETE API (saare modules ek saath)
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
 
-    // --------------------
-    // FIXED: Only Fabric API core
-    // Use latest recommended for 1.21.4
-    // --------------------
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.119.3+1.21.4"
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "action-recorder" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+    
+    // Ye important hai - client-side only mod ke liye
+    runs {
+        client {
+            client()
+            setConfigName("Minecraft Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withSourcesJar()
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-    options.release = 21
+    it.options.release = 21
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.name}" }
+processResources {
+    inputs.property "version", project.version
+    inputs.property "loader_version", project.loader_version
+    inputs.property "minecraft_version", project.minecraft_version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+               "loader_version": project.loader_version,
+               "minecraft_version": project.minecraft_version
     }
 }
