@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "movie-director",
+  "version": "${version}",
+  "name": "Movie Director Mod",
+  "description": "A cinematic recording mod for Minecraft",
+  "authors": [
+    "YourName"
+  ],
+  "contact": {
+    "homepage": "https://github.com/twiceextra57863-source/Movie-director-mod",
+    "sources": "https://github.com/twiceextra57863-source/Movie-director-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/movie-director/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.sdmine.recorder.RecorderMod"
+    ],
+    "client": [
+      "com.sdmine.recorder.RecorderModClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
