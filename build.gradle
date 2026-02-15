@@ -17,7 +17,8 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        action_recorder {
+        "action-recorder" {
+            sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
     }
