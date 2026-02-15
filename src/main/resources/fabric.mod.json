@@ -1,19 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "movie_director_mod",
+  "id": "action_recorder",
   "version": "1.0.0",
-  "name": "Movie Director Mod",
+  "name": "Action Recorder",
+  "description": "Minecraft action recording mod",
+  "authors": ["SD MINE"],
 
-  "environment": "*",
+  "environment": "client",
+
   "entrypoints": {
-    "main": [
-      "com.twiceextra.mod.MovieDirectorMod"
+    "client": [
+      "com.sdmine.recorder.RecorderModClient"
     ]
   },
-  
+
   "depends": {
-    "fabricloader": ">=0.16.10",
     "minecraft": "1.21.4",
-    "fabric-api": "*"
+    "fabricloader": ">=0.16.10",
+    "fabric-api": "*",
+    "java": ">=21"
   }
 }
