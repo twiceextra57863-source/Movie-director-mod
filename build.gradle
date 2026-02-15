@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version "$loom_version"
     id 'maven-publish'
 }
 
@@ -28,8 +28,8 @@ dependencies {
     // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     
-    // Fabric API - FIXED VERSION
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Fabric API - Using your correct version
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 loom {
@@ -54,16 +54,16 @@ tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}" }
-    }
-}
-
 processResources {
     inputs.property "version", project.version
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
+    }
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
     }
 }
