@@ -14,21 +14,7 @@ java {
 }
 
 /* ===============================
-   SOURCE SETS (MOST IMPORTANT)
-   =============================== */
-sourceSets {
-    client {
-        java {
-            srcDirs = ['src/client/java']
-        }
-        resources {
-            srcDirs = ['src/client/resources']
-        }
-    }
-}
-
-/* ===============================
-   FABRIC LOOM CONFIG
+   FABRIC LOOM CONFIG (FIXED)
    =============================== */
 loom {
     splitEnvironmentSourceSets()
