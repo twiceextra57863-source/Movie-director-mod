@@ -12,12 +12,23 @@ base {
 
 repositories {
     mavenCentral()
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
 }
 
 dependencies {
+    // Minecraft
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    
+    // Mappings
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    
+    // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    
+    // Fabric API - FIXED VERSION
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
@@ -27,6 +38,7 @@ loom {
     mods {
         actionrecorder {
             sourceSet sourceSets.main
+            sourceSet sourceSets.client
         }
     }
 }
@@ -48,10 +60,10 @@ jar {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
     }
 }
