@@ -2,8 +2,8 @@ package com.sdmine.recorder.ui;
 
 import com.sdmine.recorder.project.ProjectData;
 import com.sdmine.recorder.project.ProjectManager;
-import com.sdmine.recorder.ui.SidebarButton;
-import com.sdmine.recorder.ui.SidebarSection;
+import com.sdmine.recorder.ui.widgets.SidebarButton;
+import com.sdmine.recorder.ui.widgets.SidebarSection;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
