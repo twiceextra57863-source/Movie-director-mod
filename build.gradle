@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'maven-publish'
 }
 
 version = project.mod_version
@@ -15,6 +16,10 @@ repositories {
         name = "Fabric"
         url = "https://maven.fabricmc.net/"
     }
+    maven {
+        name = "Mojang"
+        url = "https://libraries.minecraft.net/"
+    }
 }
 
 dependencies {
@@ -27,7 +32,7 @@ dependencies {
     // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     
-    // Fabric API - Using your correct version
+    // Fabric API - Correct version for 1.21.4
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
@@ -35,7 +40,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        actionrecorder {
+        "action-recorder" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -58,11 +63,5 @@ processResources {
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
-    }
-}
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}" }
     }
 }
