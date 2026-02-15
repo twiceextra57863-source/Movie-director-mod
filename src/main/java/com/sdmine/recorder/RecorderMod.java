@@ -1,13 +1,13 @@
 package com.sdmine.recorder;
 
-import com.sdmine.recorder.input.Keybinds;
-import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.ModInitializer;
 
-public class RecorderMod implements ClientModInitializer {
+public class RecorderMod implements ModInitializer {
+
+    public static final String MOD_ID = "action_recorder";
 
     @Override
-    public void onInitializeClient() {
-        Keybinds.register();
+    public void onInitialize() {
+        System.out.println("[Action Recorder] Mod initialized");
     }
 }
-
