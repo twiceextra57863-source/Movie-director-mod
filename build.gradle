@@ -18,17 +18,16 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // Minecraft
-    minecraft "com.mojang:minecraft:1.21.4"
+loom {
+    // 🔥 THIS IS THE MAIN FIX
+    splitEnvironmentSourceSets()
+}
 
-    // Official Mojang mappings
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.4"
     mappings loom.officialMojangMappings()
 
-    // Fabric Loader (THIS WAS MISSING ❌)
     modImplementation "net.fabricmc:fabric-loader:0.16.10"
-
-    // Fabric API (single bundle only)
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.119.3+1.21.4"
 }
 
