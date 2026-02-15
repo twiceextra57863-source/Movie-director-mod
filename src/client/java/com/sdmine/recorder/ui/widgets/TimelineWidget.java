@@ -17,20 +17,18 @@ public class TimelineWidget {
         this.w = w;
         this.h = h;
 
-        // TEMP DEMO CLIPS
-        addClip(new ClipData("Intro", 0, 100));
-        addClip(new ClipData("Pan Shot", 100, 240));
-        addClip(new ClipData("Zoom", 240, 360));
+        // DEFAULT IDLE CAMERA CLIP
+        addClip(new ClipData("Idle Camera", 0, 200));
     }
 
     private void addClip(ClipData data) {
-        int clipWidth = data.length(); // 1 tick = 1 px (for now)
-        int clipX = x + 10 + clips.size() * 110;
+        int clipWidth = data.length();
+        int clipX = x + 10;
 
         clips.add(new TimelineClipWidget(
                 data,
                 clipX,
-                y + 15,
+                y + 20,
                 clipWidth,
                 30
         ));
