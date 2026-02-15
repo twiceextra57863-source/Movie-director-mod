@@ -4,5 +4,3 @@ public enum SidebarSection {
     RECORDING,
     EDIT
 }
-
-
