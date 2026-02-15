@@ -1,18 +1,40 @@
 {
   "schemaVersion": 1,
-  "id": "actionrecorder",
+  "id": "recorder",
   "version": "1.0.0",
-  "name": "Action Recorder",
-  "description": "Records player actions (movement & blocks)",
-  "authors": ["SD MINE"],
-  "environment": "*",
-  "entrypoints": {
-  "main": ["com.sdmine.recorder.ActionRecorderMod"],
-  "client": ["com.sdmine.recorder.client.RecorderClient"]
+
+  "name": "Movie Director Recorder",
+  "description": "Records full player movement, block changes and allows preview like a video editor.",
+  "authors": [
+    "SD MINE"
+  ],
+  "contact": {
+    "homepage": "https://github.com/SDMINE",
+    "sources": "https://github.com/SDMINE/Movie-director-mod"
   },
+
+  "license": "MIT",
+
+  "environment": "client",
+
+  "entrypoints": {
+    "client": [
+      "com.sdmine.recorder.client.RecorderClient"
+    ]
+  },
+
+  "mixins": [
+    "recorder.mixins.json"
+  ],
+
   "depends": {
+    "fabricloader": ">=0.15.0",
     "minecraft": "1.21.4",
-    "fabricloader": ">=0.15.7",
-    "fabric": "*"
+    "fabric-api": "*",
+    "java": ">=21"
+  },
+
+  "suggests": {
+    "modmenu": "*"
   }
 }
