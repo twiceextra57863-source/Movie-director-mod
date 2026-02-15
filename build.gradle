@@ -13,6 +13,33 @@ java {
     }
 }
 
+/* ===============================
+   SOURCE SETS (MOST IMPORTANT)
+   =============================== */
+sourceSets {
+    client {
+        java {
+            srcDirs = ['src/client/java']
+        }
+        resources {
+            srcDirs = ['src/client/resources']
+        }
+    }
+}
+
+/* ===============================
+   FABRIC LOOM CONFIG
+   =============================== */
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        action_recorder {
+            sourceSet sourceSets.client
+        }
+    }
+}
+
 repositories {
     maven { url = "https://maven.fabricmc.net/" }
     mavenCentral()
@@ -25,10 +52,10 @@ dependencies {
     // Official Mojang mappings
     mappings loom.officialMojangMappings()
 
-    // Fabric Loader (THIS WAS MISSING ❌)
+    // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:0.16.10"
 
-    // Fabric API (single bundle only)
+    // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.119.3+1.21.4"
 }
 
