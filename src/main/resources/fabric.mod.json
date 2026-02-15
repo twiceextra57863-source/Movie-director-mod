@@ -1,18 +1,19 @@
 {
   "schemaVersion": 1,
-  "id": "movie-director",
+  "id": "action-recorder",
   "version": "${version}",
-  "name": "Movie Director Mod",
-  "description": "A cinematic recording mod for Minecraft",
+  "name": "Action Recorder",
+  "description": "A cinematic recording mod for Minecraft - Record your gameplay with cinematic camera",
   "authors": [
-    "YourName"
+    "twiceextra57863-source"
   ],
   "contact": {
     "homepage": "https://github.com/twiceextra57863-source/Movie-director-mod",
-    "sources": "https://github.com/twiceextra57863-source/Movie-director-mod"
+    "sources": "https://github.com/twiceextra57863-source/Movie-director-mod",
+    "issues": "https://github.com/twiceextra57863-source/Movie-director-mod/issues"
   },
   "license": "MIT",
-  "icon": "assets/movie-director/icon.png",
+  "icon": "assets/action-recorder/icon.png",
   "environment": "client",
   "entrypoints": {
     "main": [
@@ -24,9 +25,19 @@
   },
   "mixins": [],
   "depends": {
-    "fabricloader": ">=0.15.11",
+    "fabricloader": ">=0.15.7",
     "minecraft": "~1.21.4",
     "java": ">=21",
     "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/yourdiscord"
+      }
+    }
   }
 }
