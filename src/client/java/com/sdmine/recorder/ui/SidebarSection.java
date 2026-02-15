@@ -1,4 +1,4 @@
-package com.sdmine.recorder.ui;
+package com.sdmine.recorder.ui.widgets;
 
 public enum SidebarSection {
     RECORDING,
