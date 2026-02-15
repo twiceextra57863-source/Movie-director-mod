@@ -17,9 +17,16 @@ public class EditorScreen extends Screen {
     @Override
     protected void init() {
         addDrawableChild(new SidebarButton(10, 40, "Record"));
-        addDrawableChild(new SidebarButton(10, 65, "Edit"));
+        addDrawableChild(new SidebarButton(10, 65, "Cut"));
+        addDrawableChild(new SidebarButton(10, 90, "Delete"));
 
-        timeline = new TimelineWidget(0, height - 60, width, 60);
+        timeline = new TimelineWidget(0, height - 70, width, 70);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        timeline.mouseClicked(mouseX, mouseY);
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
@@ -27,12 +34,11 @@ public class EditorScreen extends Screen {
         renderBackground(ctx);
 
         // Preview panel
-        ctx.fill(120, 40, width - 20, height - 80, 0xFF202020);
-        ctx.drawText(textRenderer, "Preview", 130, 50, 0xFFFFFF, false);
+        ctx.fill(120, 30, width - 20, height - 90, 0xFF202020);
+        ctx.drawText(textRenderer, "Camera Preview", 130, 40, 0xFFFFFF, false);
 
-        timeline.render(ctx, mx, my, delta);
+        timeline.render(ctx, mx, my);
 
         super.render(ctx, mx, my, delta);
     }
 }
-
