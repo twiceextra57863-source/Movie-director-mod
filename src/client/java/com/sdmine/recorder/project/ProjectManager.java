@@ -11,7 +11,9 @@ import java.util.List;
 
 public class ProjectManager {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON =
+            new GsonBuilder().setPrettyPrinting().create();
+
     private static final Path PROJECT_DIR =
             Path.of("action-recorder", "projects");
 
@@ -27,17 +29,20 @@ public class ProjectManager {
     }
 
     public static List<ProjectData> loadAll() throws IOException {
-        List<ProjectData> list = new ArrayList<>();
 
-        File[] files = PROJECT_DIR.toFile().listFiles((d, n) -> n.endsWith(".json"));
-        if (files == null) return list;
+        List<ProjectData> projects = new ArrayList<>();
+        File dir = PROJECT_DIR.toFile();
+
+        if (!dir.exists()) return projects;
+
+        File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
+        if (files == null) return projects;
 
         for (File file : files) {
             try (Reader reader = new FileReader(file)) {
-                list.add(GSON.fromJson(reader, ProjectData.class));
+                projects.add(GSON.fromJson(reader, ProjectData.class));
             }
         }
-        return list;
+        return projects;
     }
 }
-
