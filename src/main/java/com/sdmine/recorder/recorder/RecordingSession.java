@@ -7,7 +7,7 @@ import java.util.List;
 public class RecordingSession {
 
     private final List<ActionFrame> frames = new ArrayList<>();
-    private boolean active = false;
+    private boolean active;
 
     public void start() {
         active = true;
@@ -17,12 +17,20 @@ public class RecordingSession {
         active = false;
     }
 
+    public void resume() {
+        active = true;
+    }
+
     public void stop() {
         active = false;
-        System.out.println("Recorded frames: " + frames.size());
+        System.out.println("Frames recorded: " + frames.size());
     }
 
     public void record(ActionFrame frame) {
         if (active) frames.add(frame);
+    }
+
+    public List<ActionFrame> getFrames() {
+        return frames;
     }
 }
