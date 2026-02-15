@@ -1,0 +1,17 @@
+{
+  "key.movie-director.open_dashboard": "Open Movie Director",
+  "category.movie-director.general": "Movie Director",
+  
+  "screen.movie-director.dashboard": "Movie Director Dashboard",
+  "screen.movie-director.recording": "Recording Controls",
+  
+  "button.movie-director.start": "START",
+  "button.movie-director.stop": "STOP", 
+  "button.movie-director.pause": "PAUSE",
+  "button.movie-director.raw": "Raw Recording",
+  "button.movie-director.back": "Back",
+  
+  "status.movie-director.recording": "RECORDING",
+  "status.movie-director.paused": "PAUSED",
+  "status.movie-director.ready": "READY"
+}
