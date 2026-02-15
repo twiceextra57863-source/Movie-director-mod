@@ -1,4 +1,4 @@
-package com.sdmine.recorder;
+package com.sdmine.recorder.ui;
 
 import com.sdmine.recorder.project.ProjectData;
 import com.sdmine.recorder.project.ProjectManager;
