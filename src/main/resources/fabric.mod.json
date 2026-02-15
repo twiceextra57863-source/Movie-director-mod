@@ -7,7 +7,8 @@
   "authors": ["SD MINE"],
   "environment": "*",
   "entrypoints": {
-    "main": ["com.sdmine.recorder.ActionRecorderMod"]
+  "main": ["com.sdmine.recorder.ActionRecorderMod"],
+  "client": ["com.sdmine.recorder.client.RecorderClient"]
   },
   "depends": {
     "minecraft": "1.21.4",
