@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "actionrecorder",
+  "version": "1.0.0",
+  "name": "Action Recorder",
+  "description": "Records player actions (movement & blocks)",
+  "authors": ["SD MINE"],
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.sdmine.recorder.ActionRecorderMod"]
+  },
+  "depends": {
+    "minecraft": "1.21.4",
+    "fabricloader": ">=0.15.7",
+    "fabric": "*"
+  }
+}
