@@ -3,8 +3,6 @@
   "id": "action_recorder",
   "version": "1.0.0",
   "name": "Action Recorder",
-  "description": "Minecraft action recording mod",
-  "authors": ["SD MINE"],
 
   "environment": "client",
 
