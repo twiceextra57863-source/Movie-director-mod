@@ -1,4 +1,4 @@
-package com.sdmine.recorder.ui;
+package com.sdmine.recorder.ui.widgets;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
