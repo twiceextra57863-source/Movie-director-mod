@@ -4,13 +4,10 @@
   "package": "com.sdmine.recorder.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "GameMenuScreenMixin"
   ],
-  "client": [
-  ],
-  "server": [
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }
 }
-
