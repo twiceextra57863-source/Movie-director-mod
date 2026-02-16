@@ -1,48 +1,17 @@
 package com.sdmine.recorder.project;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectManager {
 
-    private static final Gson GSON =
-            new GsonBuilder().setPrettyPrinting().create();
+    private static final List<ProjectData> PROJECTS = new ArrayList<>();
 
-    private static final Path PROJECT_DIR =
-            Path.of("action-recorder", "projects");
-
-    public static void init() throws IOException {
-        Files.createDirectories(PROJECT_DIR);
+    public static void add(ProjectData project) {
+        PROJECTS.add(project);
     }
 
-    public static void save(ProjectData project) throws IOException {
-        File file = PROJECT_DIR.resolve(project.name + ".json").toFile();
-        try (Writer writer = new FileWriter(file)) {
-            GSON.toJson(project, writer);
-        }
-    }
-
-    public static List<ProjectData> loadAll() throws IOException {
-
-        List<ProjectData> projects = new ArrayList<>();
-        File dir = PROJECT_DIR.toFile();
-
-        if (!dir.exists()) return projects;
-
-        File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
-        if (files == null) return projects;
-
-        for (File file : files) {
-            try (Reader reader = new FileReader(file)) {
-                projects.add(GSON.fromJson(reader, ProjectData.class));
-            }
-        }
-        return projects;
+    public static List<ProjectData> getAll() {
+        return PROJECTS;
     }
 }
