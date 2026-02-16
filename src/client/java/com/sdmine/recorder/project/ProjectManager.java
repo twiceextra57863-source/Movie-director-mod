@@ -8,13 +8,11 @@ public class ProjectManager {
     private static final List<ProjectData> PROJECTS = new ArrayList<>();
 
     public static void init() {
-        PROJECTS.clear();
+        // later file load logic
     }
 
     public static void save(ProjectData project) {
-        if (!PROJECTS.contains(project)) {
-            PROJECTS.add(project);
-        }
+        PROJECTS.add(project);
     }
 
     public static List<ProjectData> loadProjects() {
