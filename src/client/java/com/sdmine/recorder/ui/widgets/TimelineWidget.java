@@ -1,6 +1,5 @@
 package com.sdmine.recorder.ui.widgets;
 
-import com.sdmine.recorder.project.ClipData;
 import net.minecraft.client.gui.DrawContext;
 
 import java.util.ArrayList;
@@ -23,14 +22,13 @@ public class TimelineWidget {
 
     private void addClip(ClipData data) {
         int clipWidth = data.length();
-        int clipX = x + 10;
+        int clipX = x + 10 + clips.size() * (clipWidth + 5);
+        int clipY = y + 10;
 
-        clips.add(new ClipData(
-    "Idle Camera",
-    ClipData.Type.IDLE_CAMERA,
-    0,
-    200
-);
+        TimelineClipWidget widget =
+                new TimelineClipWidget(clipX, clipY, clipWidth, 20, data);
+
+        clips.add(widget);
     }
 
     public void render(DrawContext ctx, int mouseX, int mouseY) {
