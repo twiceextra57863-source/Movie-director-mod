@@ -5,20 +5,19 @@ import com.sdmine.recorder.project.ProjectManager;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
 public class ProjectFormScreen extends Screen {
 
-    private String name = "";
-    private String fps = "30";
+    private TextFieldWidget nameField;
+    private TextFieldWidget fpsField;
+
     private String quality = "High";
     private int selectedTemplate = 0;
 
     private final String[] templates = {
-            "None",
-            "Basic",
-            "Action",
-            "Cinematic"
+            "None", "Basic", "Action", "Cinematic"
     };
 
     public ProjectFormScreen() {
@@ -27,83 +26,54 @@ public class ProjectFormScreen extends Screen {
 
     @Override
     protected void init() {
-
         int y = 40;
 
-        // Name input
-        this.addDrawableChild(
-                new TextFieldWidget(
-                        this.textRenderer, 20, y, 200, 20,
-                        Text.literal("Name")
-                ) {
-                    @Override
-                    public void write(String text) {
-                        name += text;
-                    }
-                }
-        );
+        nameField = new TextFieldWidget(
+                textRenderer, 20, y, 200, 20, Text.literal("Name"));
+        addDrawableChild(nameField);
 
         y += 30;
 
-        // FPS input
-        this.addDrawableChild(
-                new TextFieldWidget(
-                        this.textRenderer, 20, y, 200, 20,
-                        Text.literal("FPS")
-                ) {
-                    @Override
-                    public void write(String text) {
-                        fps += text;
-                    }
-                }
-        );
+        fpsField = new TextFieldWidget(
+                textRenderer, 20, y, 200, 20, Text.literal("FPS"));
+        fpsField.setText("30");
+        addDrawableChild(fpsField);
 
         y += 30;
 
-        // Quality buttons
-        this.addDrawableChild(
+        addDrawableChild(
                 ButtonWidget.builder(Text.literal("Quality: " + quality), btn -> {
-                    // toggle
-                    quality = quality.equals("High") ? "Medium" : quality.equals("Medium") ? "Low" : "High";
-                }).dimensions(20, y, 120, 20).build()
+                    quality = switch (quality) {
+                        case "High" -> "Medium";
+                        case "Medium" -> "Low";
+                        default -> "High";
+                    };
+                    btn.setMessage(Text.literal("Quality: " + quality));
+                }).dimensions(20, y, 140, 20).build()
         );
 
         y += 30;
 
-        // Template buttons
-        this.addDrawableChild(
+        addDrawableChild(
                 ButtonWidget.builder(Text.literal("Template: " + templates[selectedTemplate]), btn -> {
                     selectedTemplate = (selectedTemplate + 1) % templates.length;
-                }).dimensions(20, y, 140, 20).build()
+                    btn.setMessage(Text.literal("Template: " + templates[selectedTemplate]));
+                }).dimensions(20, y, 160, 20).build()
         );
 
         y += 40;
 
-        // Create button
-        this.addDrawableChild(
+        addDrawableChild(
                 ButtonWidget.builder(Text.literal("Create Project"), btn -> {
-
-                    ProjectData project = new ProjectData(name);
-                    project.fps = Integer.parseInt(fps);
+                    ProjectData project = new ProjectData(nameField.getText());
+                    project.fps = Integer.parseInt(fpsField.getText());
                     project.quality = quality;
                     project.template = templates[selectedTemplate];
 
-                    try {
-                        ProjectManager.save(project);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+                    ProjectManager.save(project);
                     client.setScreen(null);
-
-                }).dimensions(20, y, 140, 20).build()
+                }).dimensions(20, y, 160, 20).build()
         );
-    }
-
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context);
-        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
@@ -111,4 +81,3 @@ public class ProjectFormScreen extends Screen {
         return false;
     }
 }
-
