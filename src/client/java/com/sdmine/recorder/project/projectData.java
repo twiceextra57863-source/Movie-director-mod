@@ -7,7 +7,11 @@ import java.util.UUID;
 public class ProjectData {
 
     private final String id;
-    private String name;
+    public String name;
+    public int fps;
+    public String quality;
+    public String template;
+
     private final List<ClipData> clips = new ArrayList<>();
 
     public ProjectData(String name) {
@@ -15,19 +19,11 @@ public class ProjectData {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+    public void addClip(ClipData clip) {
+        clips.add(clip);
     }
 
     public List<ClipData> getClips() {
         return clips;
-    }
-
-    public void addClip(ClipData clip) {
-        clips.add(clip);
     }
 }
