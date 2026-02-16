@@ -1,4 +1,4 @@
-package com.sdmine.recorder.ui.widgets;
+import com.sdmine.recorder.ui.widgets.ClipData;
 
 public class ClipData {
 
