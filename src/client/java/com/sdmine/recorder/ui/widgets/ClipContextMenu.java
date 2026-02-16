@@ -1,6 +1,6 @@
 package com.sdmine.recorder.ui.widgets;
 
-import com.sdmine.recorder.project.ClipData;
+import com.sdmine.recorder.ui.widgets.ClipData;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
