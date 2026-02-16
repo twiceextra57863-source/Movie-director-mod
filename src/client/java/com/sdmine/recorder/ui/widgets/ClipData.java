@@ -1,11 +1,11 @@
-import com.sdmine.recorder.ui.widgets.ClipData;
+package com.sdmine.recorder.ui.widgets;
 
 public class ClipData {
 
-    public String name;
-    public int start;
-    public int end;
-    public boolean keyframe;
+    private final String name;
+    private final int start;
+    private final int end;
+    private boolean keyframe;
 
     public ClipData(String name, int start, int end) {
         this.name = name;
@@ -14,11 +14,19 @@ public class ClipData {
         this.keyframe = false;
     }
 
-    public boolean isKeyframe() {
-        return keyframe;
+    public String getName() {
+        return name;
     }
 
     public int length() {
         return end - start;
+    }
+
+    public boolean isKeyframe() {
+        return keyframe;
+    }
+
+    public void convertToKeyframe() {
+        this.keyframe = true;
     }
 }
