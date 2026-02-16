@@ -25,13 +25,12 @@ public class TimelineWidget {
         int clipWidth = data.length();
         int clipX = x + 10;
 
-        clips.add(new TimelineClipWidget(
-                data,
-                clipX,
-                y + 20,
-                clipWidth,
-                30
-        ));
+        clips.add(new ClipData(
+    "Idle Camera",
+    ClipData.Type.IDLE_CAMERA,
+    0,
+    200
+);
     }
 
     public void render(DrawContext ctx, int mouseX, int mouseY) {
