@@ -5,10 +5,10 @@
   "name": "Action Recorder",
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "com.sdmine.recorder.RecorderModClient"
-    ]
-  },
+  "client": [
+    "com.sdmine.recorder.RecorderModClient"
+  ]
+}
   "depends": {
     "minecraft": "1.21.4",
     "fabricloader": ">=0.16.10",
