@@ -11,34 +11,63 @@ public class EditorScreen extends Screen {
     private TimelineWidget timeline;
 
     public EditorScreen() {
-        super(Text.literal("Editor"));
+        super(Text.literal("Movie Director - Editor"));
     }
 
     @Override
     protected void init() {
+        // Sidebar buttons
         addDrawableChild(new SidebarButton(10, 40, "Record"));
         addDrawableChild(new SidebarButton(10, 65, "Cut"));
         addDrawableChild(new SidebarButton(10, 90, "Delete"));
+        addDrawableChild(new SidebarButton(10, 115, "Export"));
 
-        timeline = new TimelineWidget(0, height - 70, width, 70);
+        // Timeline (bottom area)
+        timeline = new TimelineWidget(
+                120,                 // x (after sidebar)
+                height - 80,         // y
+                width - 130,         // width
+                70                   // height
+        );
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        timeline.mouseClicked(mouseX, mouseY);
+        if (timeline != null) {
+            timeline.mouseClicked(mouseX, mouseY);
+        }
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
-    public void render(DrawContext ctx, int mx, int my, float delta) {
+    public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
+        // Background
         renderBackground(ctx);
 
+        // Sidebar background
+        ctx.fill(0, 0, 120, height, 0xFF151515);
+
         // Preview panel
-        ctx.fill(120, 30, width - 20, height - 90, 0xFF202020);
-        ctx.drawText(textRenderer, "Camera Preview", 130, 40, 0xFFFFFF, false);
+        ctx.fill(130, 30, width - 20, height - 90, 0xFF202020);
+        ctx.drawText(
+                textRenderer,
+                "Camera Preview",
+                140,
+                40,
+                0xFFFFFF,
+                false
+        );
 
-        timeline.render(ctx, mx, my);
+        // Timeline
+        if (timeline != null) {
+            timeline.render(ctx, mouseX, mouseY);
+        }
 
-        super.render(ctx, mx, my, delta);
+        super.render(ctx, mouseX, mouseY, delta);
+    }
+
+    @Override
+    public boolean shouldPause() {
+        return false;
     }
 }
