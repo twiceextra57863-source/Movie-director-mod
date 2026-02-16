@@ -1,6 +1,7 @@
 package com.sdmine.recorder.ui.widgets;
 
 public enum SidebarSection {
-    RECORDING,
-    EDIT
+    RECORD,
+    EDIT,
+    EXPORT
 }
