@@ -1,38 +1,24 @@
-package com.sdmine.recorder.project;
+package com.sdmine.recorder.ui.widgets;
 
 public class ClipData {
 
-    public enum Type {
-        IDLE_CAMERA,
-        KEYFRAME_CAMERA
-    }
+    public String name;
+    public int start;
+    public int end;
+    public boolean keyframe;
 
-    private String name;
-    private Type type;
-    private int startTick;
-    private int duration;
-
-    public ClipData(String name, Type type, int startTick, int duration) {
+    public ClipData(String name, int start, int end) {
         this.name = name;
-        this.type = type;
-        this.startTick = startTick;
-        this.duration = duration;
+        this.start = start;
+        this.end = end;
+        this.keyframe = false;
     }
 
     public boolean isKeyframe() {
-        return type == Type.KEYFRAME_CAMERA;
-    }
-
-    public void convertToKeyframe() {
-        this.type = Type.KEYFRAME_CAMERA;
-        this.name = "Keyframe Camera";
+        return keyframe;
     }
 
     public int length() {
-        return duration;
-    }
-
-    public String getName() {
-        return name;
+        return end - start;
     }
 }
