@@ -7,29 +7,32 @@ public class ClipData {
         KEYFRAME_CAMERA
     }
 
+    private String name;
     private Type type;
     private int startTick;
     private int duration;
 
-    public ClipData(Type type, int startTick, int duration) {
+    public ClipData(String name, Type type, int startTick, int duration) {
+        this.name = name;
         this.type = type;
         this.startTick = startTick;
         this.duration = duration;
     }
 
-    public Type getType() {
-        return type;
+    public boolean isKeyframe() {
+        return type == Type.KEYFRAME_CAMERA;
     }
 
     public void convertToKeyframe() {
         this.type = Type.KEYFRAME_CAMERA;
+        this.name = "Keyframe Camera";
     }
 
-    public int getStartTick() {
-        return startTick;
-    }
-
-    public int getDuration() {
+    public int length() {
         return duration;
+    }
+
+    public String getName() {
+        return name;
     }
 }
